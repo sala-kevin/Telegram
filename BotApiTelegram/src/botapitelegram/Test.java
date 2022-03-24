@@ -50,7 +50,6 @@ public class Test {
     //Ritorna json con tutti i messaggi inviati
     public List<Message> getUpdate(int last_update_id) throws IOException {
         List<Message> results = null;
-        //offset elimina messaggi prima offset offset=id ultimo mess che voglio tenere
         String jsonString = readJsonFromUrl("https://api.telegram.org/bot5074155669:AAHh7z0LkXf8RU6F7LOq-5csX77Y6RdoHhU/getUpdates?offset=" + last_update_id);
         
         if (!jsonString.equals("")) {
@@ -82,7 +81,6 @@ public class Test {
         }
         return results;
     }
-    //manda un messaggio
     public boolean sendMessage(int chat_id, String text) throws IOException {
         String encode_txt = URLEncoder.encode(text, "UTF-8");//codifica formato che va bene a url
         //cambio send message e parametri che passo in base alla funzione che voglio svolgere ex: .../sendPhoto?chat_id=
@@ -96,7 +94,6 @@ public class Test {
         }
         return false;
     }
-    //manda messaggio con location
     public boolean sendLocation(int chat_id, double[] coord) throws IOException {
       
         String jsonString = readJsonFromUrl("https://api.telegram.org/bot5074155669:AAHh7z0LkXf8RU6F7LOq-5csX77Y6RdoHhU/sendLocation?chat_id=" + chat_id + "&latitude=" + coord[0] +"&longitude="+coord[1]);
